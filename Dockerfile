@@ -11,9 +11,11 @@ RUN curl -sSL https://install.python-poetry.org | python3 - \
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi --no-root
+    poetry install --no-interaction --no-ansi
+
+RUN pip install -e .
 
 CMD ["poetry", "run", "python", "shifttask/main.py"]
